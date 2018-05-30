@@ -3,6 +3,7 @@
 
 import xlrd
 
+from quiz.QuizPaper import QuizPaper
 from quiz.MultipleChoice import MultipleChoice
 from quiz.TrueFalse import TrueFalse
 from quiz.Glossary import Glossary
@@ -13,7 +14,7 @@ from quiz.ShortAnswer import ShortAnswer
 class QuizHandler:
 
     def __init__(self):
-        self.questions = dict()
+        self.paper = QuizPaper()
 
     def handle(self, file):
         workbook = xlrd.open_workbook(file)
@@ -58,24 +59,20 @@ class QuizHandler:
             pass
 
         if question is not None:
-            print(question)
-            self.cacheQuestionByType(category, question)
+            self.paper.addQuestion(category, question)
 
-    def getCacheByType(self, category):
-        cache = self.questions.get(category)
-        if cache is None:
-            self.questions[category] = []
+    def toWord(self, file, title=None):
+        if title is not None:
+            self.paper.setTitle(title)
 
-        return self.questions[category]
-
-    def cacheQuestionByType(self, category, question):
-        cache = self.getCacheByType(category)
-        cache.append(question)
-
-    def toWord(self):
-        pass
+        self.paper.toWord(file)
 
 
 if __name__ == '__main__':
     handler = QuizHandler()
     handler.handle('res/Anatomy.xls')
+
+    print(handler.paper)
+
+    title = u'2018中国医科大《系统解剖学》考试复习题集'
+    handler.toWord('res/Anatomy.docx', title)

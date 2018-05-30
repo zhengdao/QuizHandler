@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from builtins import range
+
+from quiz.Config import Config
 
 
 class Question:
@@ -17,8 +18,35 @@ class Question:
     def setExplanation(self, explanation):
         self.explanation = explanation
 
-    def toWord(self):
-        pass
+    def stemToWord(self, doc, lead='', level=2):
+        doc.add_heading(lead + self.stem, level)
+
+    def answerToWord(self, doc):
+        p = doc.add_paragraph()
+        p.add_run(u'答案：', 'ptitle')
+        if self.answer is not None:
+            p.add_run(self.answer, 'pcontent')
+
+    def explanationToWord(self, doc):
+        p = doc.add_paragraph()
+        p.add_run(u'解析：', 'ptitle')
+        if self.explanation is not None:
+            p.add_run(self.explanation, 'pcontent')
+
+    def toWord(self, doc, lead='', level=2, config=Config()):
+        # to stem
+        self.stemToWord(doc, lead, level)
+
+        # to answer
+        if config.isTrue('answer'):
+            self.answerToWord(doc)
+
+        # to explanation
+        if config.isTrue('explanation'):
+            self.explanationToWord(doc)
+
+        # Keep a blank paragraph
+        doc.add_paragraph('', 'pstyle')
 
     def getStemTail(self):
         return ''

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from quiz.Question import Question
+from quiz.Config import Config
 
 
 class MultipleChoice(Question):
@@ -16,9 +17,29 @@ class MultipleChoice(Question):
 
     def addOption(self, option):
         self.options.append(option)
+        
+    def optionsToWord(self, doc):
+        for i in range(len(self.options)):
+            tmp = [chr(65 + i), ' ', self.options[i]]
+            doc.add_paragraph(''.join(tmp), 'pstyle')
 
-    def toWord(self):
-        pass
+    def toWord(self, doc, lead='', level=2, config=Config()):
+        # to stem
+        self.stemToWord(doc, lead, level)
+
+        # to options
+        self.optionsToWord(doc)
+
+        # to answer
+        if config.isTrue('answer'):
+            self.answerToWord(doc)
+
+        # to explanation
+        if config.isTrue('explanation'):
+            self.explanationToWord(doc)
+
+        # Keep a blank paragraph
+        doc.add_paragraph('', 'pstyle')
 
     def getStemTail(self):
         return u'：'

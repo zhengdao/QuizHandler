@@ -15,9 +15,22 @@ class GapFilling(Question):
 
     def __init__(self, category, stem, answer=[], explanation=None):
         Question.__init__(self, category, stem, answer, explanation)
+       
+    def stemToWord(self, doc, lead='', level=2):
+        stem = self.makeupStem()
+        doc.add_heading(lead + stem, level)
+        
+    def answerToWord(self, doc):
+        tmp = []
+        for i in range(len(self.answer)):
+            tmp.extend([self.getPosIdx(i), ' ', self.answer[i], '\t'])
 
-    def toWord(self):
-        pass
+        p = doc.add_paragraph()
+        p.add_run(u'答案：', 'ptitle')
+        p.add_run(''.join(tmp), 'pcontent')
+        
+        # Keep a blank paragraph
+        doc.add_paragraph('', 'pstyle')
 
     def makeupStem(self):
         frags = self.rPidx.split(self.stem)
@@ -37,7 +50,7 @@ class GapFilling(Question):
 
         tmp.extend(['答案：', '\n'])
         for i in range(len(self.answer)):
-            tmp.extend([self.getPosIdx(i), ' ', self.answer[i], '\n'])
+            tmp.extend([self.getPosIdx(i), ' ', self.answer[i], '\t'])
 
         tmp.append('\n')
         if self.explanation is None:

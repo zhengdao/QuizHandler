@@ -8,6 +8,3 @@ class ShortAnswer(Question):
 
     def __init__(self, category, stem, answer="", explanation=None):
         Question.__init__(self, category, stem, answer, explanation)
-
-    def toWord(self):
-        pass
