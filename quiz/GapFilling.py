@@ -18,7 +18,7 @@ class GapFilling(Question):
        
     def stemToWord(self, doc, lead='', level=2):
         stem = self.makeupStem()
-        doc.add_heading(lead + stem, level)
+        doc.add_paragraph(lead + stem + self.getStemTail(), 'h' + str(level))
         
     def answerToWord(self, doc):
         tmp = []
@@ -46,7 +46,7 @@ class GapFilling(Question):
 
     def __str__(self):
         stem = self.makeupStem()
-        tmp = ['(', self.category, ')', stem, '：\n']
+        tmp = ['(', self.category, ')', stem, self.getStemTail(), '\n']
 
         tmp.extend(['答案：', '\n'])
         for i in range(len(self.answer)):

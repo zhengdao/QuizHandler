@@ -19,7 +19,7 @@ class Question:
         self.explanation = explanation
 
     def stemToWord(self, doc, lead='', level=2):
-        doc.add_heading(lead + self.stem, level)
+        doc.add_paragraph(lead + self.stem + self.getStemTail(), 'h' + str(level))
 
     def answerToWord(self, doc):
         p = doc.add_paragraph()

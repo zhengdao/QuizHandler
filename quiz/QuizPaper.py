@@ -52,8 +52,8 @@ class QuizPaper:
 
         pformat = style.paragraph_format
         pformat.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        pformat.space_before = Pt(4.5)
-        pformat.space_after = Pt(9)
+        pformat.space_before = Pt(4)
+        pformat.space_after = Pt(12)
 
         # Define paragraph styles
         style = ustyles.add_style('pstyle', WD_STYLE_TYPE.PARAGRAPH)
@@ -75,15 +75,19 @@ class QuizPaper:
         style.element.rPr.rFonts.set(qn('w:eastAsia'), u'宋体')
 
         # Customize "Header" style
-        style = ustyles['Heading 1']
-        style.font.size = Pt(12)
+        hstyle = ustyles['Heading 1']
+        style = ustyles.add_style('h1', WD_STYLE_TYPE.PARAGRAPH)
+        style.font.size = hstyle.font.size
         style.font.name = u'宋体'
         style.element.rPr.rFonts.set(qn('w:eastAsia'), u'宋体')
+        style.font.color.rgb = hstyle.font.color.rgb
 
-        style = ustyles['Heading 2']
-        style.font.size = Pt(12)
+        hstyle = ustyles['Heading 2']
+        style = ustyles.add_style('h2', WD_STYLE_TYPE.PARAGRAPH)
+        style.font.size = hstyle.font.size
         style.font.name = u'宋体'
         style.element.rPr.rFonts.set(qn('w:eastAsia'), u'宋体')
+        style.font.color.rgb = hstyle.font.color.rgb
 
     def toWord(self, file, config=Config()):
         doc = Document()
@@ -99,7 +103,8 @@ class QuizPaper:
         qdict = self.questions
         for (category, qset) in qdict.items():
             # Generate question category
-            p = doc.add_heading(self.getBulletLead(i) + category, 1)
+            # doc.add_heading(self.getBulletLead(i) + category, 1)
+            doc.add_paragraph(self.getBulletLead(i) + category, 'h1')
 
             # Generate quests
             j = 0
