@@ -1,8 +1,10 @@
-# Python Example - QuizHandler
+## Python Example - QuizHandler
 
-A python example to help convert the Microsoft Excel Doc to Word.
+_QuizHanler_ is a python example to exercise the python programming.
 
-## Dependencies
+This program can help to convert a formatted Microsoft Excel doc to word. 
+
+### Dependencies
 
 - [python](https://www.python.org/)(>=3.6)
     
@@ -10,6 +12,6 @@ A python example to help convert the Microsoft Excel Doc to Word.
 
 - [python-docx](https://github.com/python-openxml/python-docx)
 
-## License
+### License
 
 Under [GPLv3](LICENSE)
