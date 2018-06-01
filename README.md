@@ -6,7 +6,7 @@ A python example to help convert the Microsoft Excel Doc to Word.
 
 - [python](https://www.python.org/)(>=3.6)
     
-- [xlrd](https://www.python.org/)
+- [xlrd](https://github.com/python-excel/xlrd)
 
 - [python-docx](https://github.com/python-openxml/python-docx)
 
