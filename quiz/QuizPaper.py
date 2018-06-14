@@ -28,11 +28,11 @@ class QuizPaper:
         qset.append(question)
 
     def getQuestionSetByType(self, category):
-            qset = self.questions.get(category)
-            if qset is None:
-                self.questions[category] = []
+        qset = self.questions.get(category)
+        if qset is None:
+            self.questions[category] = []
 
-            return self.questions[category]
+        return self.questions[category]
 
     def prepareStyles(self, doc):
         ustyles = doc.styles
@@ -104,8 +104,10 @@ class QuizPaper:
         qdict = self.questions
         for (category, qset) in qdict.items():
             # Generate question category
-            # doc.add_heading(self.getBulletLead(i) + NLSFactory.getNLSText('N-' + category), 1)
-            doc.add_paragraph(self.getBulletLead(i) + NLSFactory.getNLSText('N-' + category), 'h1')
+            txt = self.getBulletLead(i) \
+                  + NLSFactory.getNLSText('N-' + category)
+            # doc.add_heading(txt, 1)
+            doc.add_paragraph(txt, 'h1')
 
             # Generate quests
             j = 0
@@ -117,7 +119,10 @@ class QuizPaper:
 
         doc.save(file)
 
-    linums = [u'一', u'二', u'三', u'四', u'五', u'六', u'七', u'八', u'九', u'十']
+    linums = [
+        u'一', u'二', u'三', u'四', u'五', u'六',
+        u'七', u'八', u'九', u'十'
+    ]
 
     def getBulletLead(self, i=0, category=None):
         return self.linums[i] + u'、' + ''
@@ -132,7 +137,9 @@ class QuizPaper:
         i = 0
         qdict = self.questions
         for (category, qset) in qdict.items():
-            tmp.extend([self.getBulletLead(i), NLSFactory.getNLSText('N-' + category), '\n'])
+            tmp.extend(
+                [self.getBulletLead(i), NLSFactory.getNLSText('N-' + category),
+                 '\n'])
 
             j = 0
             for j in range(len(qset)):

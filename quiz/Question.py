@@ -28,7 +28,8 @@ class Question:
         self.explanation = explanation
 
     def stemToWord(self, doc, lead='', level=2, config=Config()):
-        doc.add_paragraph(lead + self.stem + self.getStemTail(), 'h' + str(level))
+        doc.add_paragraph(lead + self.stem + self.getStemTail(),
+                          'h' + str(level))
 
     def answerToWord(self, doc):
         p = doc.add_paragraph()
@@ -70,7 +71,9 @@ class Question:
 
         # tmp.append('\n')
         if self.explanation is not None:
-            tmp.extend([NLSFactory.getNLSText('msgExplanation'), self.explanation, '\n'])
+            tmp.extend(
+                [NLSFactory.getNLSText('msgExplanation'), self.explanation,
+                 '\n'])
         else:
             tmp.extend([NLSFactory.getNLSText('msgExplanation'), '\n'])
 
