@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import locale
 import xlrd
 
 from quiz.QuizPaper import QuizPaper
+from quiz.SingleChoice import SingleChoice
 from quiz.MultipleChoice import MultipleChoice
 from quiz.TrueFalse import TrueFalse
 from quiz.Glossary import Glossary
@@ -32,34 +34,34 @@ class QuizHandler:
 
         if category == u'单选题':
             options = row[2].split(u"〓")
-            question = MultipleChoice(category, stem, options)
+            question = SingleChoice(stem, options)
 
         elif category == u'多选题':
             options = row[2].split(u"〓")
-            question = MultipleChoice(category, stem, options)
+            question = MultipleChoice(stem, options)
             pass
 
         elif category == u'名词解释':
-            question = Glossary(category, stem)
+            question = Glossary(stem)
             pass
 
         elif category == u'判断题':
-            question = TrueFalse(category, stem)
+            question = TrueFalse(stem)
             pass
 
         elif category == u'填空题':
-            question = GapFilling(category, stem)
+            question = GapFilling(stem)
             pass
 
         elif category == u'问答题':
-            question = ShortAnswer(category, stem)
+            question = ShortAnswer(stem)
             pass
 
         else:
             pass
 
         if question is not None:
-            self.paper.addQuestion(category, question)
+            self.paper.addQuestion(question.getCategory(), question)
 
     def toWord(self, file, title=None):
         if title is not None:
@@ -69,6 +71,9 @@ class QuizHandler:
 
 
 if __name__ == '__main__':
+    loc = locale.getlocale()
+    locale.setlocale(locale.LC_ALL, 'zh_CN.UTF-8')
+
     handler = QuizHandler()
     handler.handle('res/Anatomy.xls')
 
@@ -76,3 +81,5 @@ if __name__ == '__main__':
 
     title = u'2018中国医科大《系统解剖学》考试复习题集'
     handler.toWord('res/Anatomy.docx', title)
+
+    locale.setlocale(locale.LC_ALL, loc)

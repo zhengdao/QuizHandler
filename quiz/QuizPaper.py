@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from dep import NLSFactory
 from quiz.Config import Config
 from docx import Document
 from docx.shared import Pt
@@ -103,8 +104,8 @@ class QuizPaper:
         qdict = self.questions
         for (category, qset) in qdict.items():
             # Generate question category
-            # doc.add_heading(self.getBulletLead(i) + category, 1)
-            doc.add_paragraph(self.getBulletLead(i) + category, 'h1')
+            # doc.add_heading(self.getBulletLead(i) + NLSFactory.getNLSText('N-' + category), 1)
+            doc.add_paragraph(self.getBulletLead(i) + NLSFactory.getNLSText('N-' + category), 'h1')
 
             # Generate quests
             j = 0
@@ -119,10 +120,10 @@ class QuizPaper:
     linums = [u'一', u'二', u'三', u'四', u'五', u'六', u'七', u'八', u'九', u'十']
 
     def getBulletLead(self, i=0, category=None):
-        return self.linums[i] + u'、' + ' '
+        return self.linums[i] + u'、' + ''
 
     def getStemLead(self, i=0):
-        return str(i + 1) + u'.' + ' '
+        return str(i + 1) + u'.' + ''
 
     def __str__(self):
         tmp = [self.title, '\n']
@@ -131,7 +132,7 @@ class QuizPaper:
         i = 0
         qdict = self.questions
         for (category, qset) in qdict.items():
-            tmp.extend([self.getBulletLead(i), category, '\n'])
+            tmp.extend([self.getBulletLead(i), NLSFactory.getNLSText('N-' + category), '\n'])
 
             j = 0
             for j in range(len(qset)):
@@ -142,7 +143,7 @@ class QuizPaper:
 
             i = i + 1
 
-        tmp.extend([u'题数：' + str(cnt)])
+        tmp.extend([NLSFactory.getNLSText('msgQuizNum') + str(cnt)])
 
         return ''.join(tmp)
 
