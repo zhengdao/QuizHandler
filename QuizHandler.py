@@ -4,6 +4,8 @@
 import locale
 import xlrd
 
+from quiz.Config import Config
+from quiz.Category import Category
 from quiz.QuizPaper import QuizPaper
 from quiz.SingleChoice import SingleChoice
 from quiz.MultipleChoice import MultipleChoice
@@ -63,11 +65,14 @@ class QuizHandler:
         if question is not None:
             self.paper.addQuestion(question.getCategory(), question)
 
-    def toWord(self, file, title=None):
+    def toWord(self, file, title=None, config=None):
         if title is not None:
             self.paper.setTitle(title)
 
-        self.paper.toWord(file)
+        if config is None:
+            self.paper.toWord(file)
+        else:
+            self.paper.toWord(file, config)
 
 
 if __name__ == '__main__':
@@ -75,11 +80,21 @@ if __name__ == '__main__':
     locale.setlocale(locale.LC_ALL, 'zh_CN.UTF-8')
 
     handler = QuizHandler()
-    handler.handle('res/Anatomy.xls')
+    handler.handle('res/Anatomy.xlsx')
 
     print(handler.paper)
 
-    title = u'2018中国医科大《系统解剖学》考试复习题集'
+    title = u'2018年6月中医大《系统解剖学》考试复习题集'
     handler.toWord('res/Anatomy.docx', title)
+
+    pconfig = Config({
+        Category.SChoice: {'answer': True, 'explanation': False},
+        Category.MChoice: {'answer': True, 'explanation': False},
+        Category.Glossary: {'answer': True, 'explanation': False},
+        Category.TrueFalse: {'answer': True, 'explanation': False},
+        Category.GapFilling: {'answer': True, 'explanation': False},
+        Category.ShortAnswer: {'answer': True, 'explanation': False}
+    })
+    # handler.toWord('res/Print.docx', title, pconfig)
 
     locale.setlocale(locale.LC_ALL, loc)

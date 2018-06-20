@@ -13,7 +13,7 @@ class Properties:
         self.properties = {}
 
         try:
-            fopen = open(self.file_name, 'r')
+            fopen = open(self.file_name, 'r', encoding='UTF-8')
             for line in fopen:
                 line = line.strip()
                 if line.find('=') > 0 and not line.startswith('#'):
