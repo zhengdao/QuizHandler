@@ -4,10 +4,10 @@
 from dep import NLSFactory
 from quiz.Config import Config
 from docx import Document
-from docx.shared import Pt
+from docx.shared import Pt, RGBColor
 from docx.enum.style import WD_STYLE_TYPE
 from docx.oxml.ns import qn
-from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
+from docx.enum.text import WD_PARAGRAPH_ALIGNMENT, WD_LINE_SPACING
 
 
 class QuizPaper:
@@ -42,6 +42,12 @@ class QuizPaper:
         style.font.size = Pt(12)
         style.font.name = u'宋体'
         style.element.rPr.rFonts.set(qn('w:eastAsia'), u'宋体')
+
+        pformat = style.paragraph_format
+        pformat.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        pformat.space_before = Pt(0)
+        pformat.space_after = Pt(0)
+        pformat.line_spacing_rule = WD_LINE_SPACING.SINGLE
 
         # Define paper title styles
         style = ustyles.add_style('title', WD_STYLE_TYPE.PARAGRAPH)
@@ -78,17 +84,25 @@ class QuizPaper:
         # Customize "Header" style
         hstyle = ustyles['Heading 1']
         style = ustyles.add_style('h1', WD_STYLE_TYPE.PARAGRAPH)
-        style.font.size = hstyle.font.size
-        style.font.name = u'宋体'
+        pfont = style.font
+        pfont.bold = True
+        pfont.size = Pt(13)  # hstyle.font.size
+        pfont.name = u'宋体'
         style.element.rPr.rFonts.set(qn('w:eastAsia'), u'宋体')
-        style.font.color.rgb = hstyle.font.color.rgb
+        pfont.color.rgb = hstyle.font.color.rgb
 
         hstyle = ustyles['Heading 2']
         style = ustyles.add_style('h2', WD_STYLE_TYPE.PARAGRAPH)
-        style.font.size = hstyle.font.size
+        pfont = style.font
+        pfont.bold = True
+        pfont.size = Pt(13)  # hstyle.font.size
         style.font.name = u'宋体'
         style.element.rPr.rFonts.set(qn('w:eastAsia'), u'宋体')
-        style.font.color.rgb = hstyle.font.color.rgb
+        pfont.color.rgb = RGBColor(0, 0x20, 0x60)  # hstyle.font.color.rgb
+
+        pformat = style.paragraph_format
+        pformat.space_before = Pt(12)
+        pformat.space_after = Pt(6)
 
     def toWord(self, file, config=Config()):
         doc = Document()

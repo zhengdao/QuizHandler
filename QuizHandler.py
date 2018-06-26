@@ -95,6 +95,6 @@ if __name__ == '__main__':
         Category.GapFilling: {'answer': True, 'explanation': False},
         Category.ShortAnswer: {'answer': True, 'explanation': False}
     })
-    # handler.toWord('res/Print.docx', title, pconfig)
+    handler.toWord('res/Print.docx', title, pconfig)
 
     locale.setlocale(locale.LC_ALL, loc)
