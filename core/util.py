@@ -3,7 +3,71 @@
 
 import re
 import os
+import os.path
 import tempfile
+
+
+class Locale:
+
+    def __init__(self, language: str, country: str = None):
+        self.__language = language
+        self.__country = country
+
+    @property
+    def language(self):
+        """
+        Return the language code of this Locale.
+
+        :return: str | none
+        """
+        return self.__language
+
+    @language.setter
+    def language(self, language):
+        """
+        Set the language of current Locale. Language always be lower case.
+        If the specified language isn't be the valid string, a blank string
+        will be used.
+
+        :param language: str 2 or 3 letter language code.
+        """
+        if isinstance(language, str):
+            self.__language = language
+
+    @property
+    def country(self):
+        """
+        Returns the country code of this Locale.
+
+        :return: str
+        """
+        return self.__country
+
+    @country.setter
+    def country(self, country):
+        """
+        Sets the country for the Locale. Country always be upper case.
+        If the specified country isn't be the valid string, a blank string
+        will be used.
+
+        :param country: str An ISO 3166 alpha-2 country code or a UN M.49 numeric-3
+               area code.
+        """
+        if isinstance(country, str):
+            self.__country = country
+
+    def __str__(self):
+        locstr = self.__language
+        if isinstance(self.__country, str):
+            locstr = '_'.join([self.__language, self.__country])
+
+        return locstr
+
+    __repr__ = __str__
+
+    @staticmethod
+    def getDefaultLocale():
+        return Locale("en", "US")
 
 
 class Properties:
@@ -25,7 +89,7 @@ class Properties:
             fopen.close()
 
     def has_key(self, key):
-        return self.properties.has_key(key)
+        return key in self.properties
 
     def get(self, key, default_value=''):
         if key in self.properties:
@@ -73,3 +137,11 @@ def replace_property(file_name, from_regex, to_str, append_on_not_exists=True):
         file.close()
     else:
         print(f"file {file_name} not found!")
+
+
+def get_filename(path):
+    return os.path.splitext(path)[0]
+
+
+def get_fileext(path):
+    return os.path.splitext(path)[1]

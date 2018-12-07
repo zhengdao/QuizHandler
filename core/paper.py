@@ -1,40 +1,47 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-from dep import NLSFactory
-from quiz.Config import Config
+from core import nls
+from core.quiz import Config
 from docx import Document
-from docx.shared import Pt, RGBColor
 from docx.enum.style import WD_STYLE_TYPE
-from docx.oxml.ns import qn
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT, WD_LINE_SPACING
+from docx.oxml.ns import qn
+from docx.shared import Pt, RGBColor
 
 
 class QuizPaper:
+    """
+    Define the QuizPaper.
+    """
 
-    def __init__(self, title='', questions=dict()):
+    def __init__(self, title='', questions=None):
         self.title = title
-        self.questions = questions
 
-    def setTitle(self, title):
+        if questions is None:
+            self.__questions = dict()
+        else:
+            self.__questions = questions
+
+    def settitle(self, title):
         self.title = title
 
-    def setQuestions(self, questions):
+    def setquestions(self, questions):
         if isinstance(questions, dict):
-            self.questions = questions
+            self.__questions = questions
 
-    def addQuestion(self, category, question):
-        qset = self.getQuestionSetByType(category)
+    def addquestion(self, category, question):
+        qset = self.get_qset_by_type(category)
         qset.append(question)
 
-    def getQuestionSetByType(self, category):
-        qset = self.questions.get(category)
+    def get_qset_by_type(self, category):
+        qset = self.__questions.get(category)
         if qset is None:
-            self.questions[category] = []
+            self.__questions[category] = []
 
-        return self.questions[category]
+        return self.__questions[category]
 
-    def prepareStyles(self, doc):
+    @staticmethod
+    def preparestyles(doc):
         ustyles = doc.styles
 
         # Customize the default font
@@ -104,22 +111,22 @@ class QuizPaper:
         pformat.space_before = Pt(12)
         pformat.space_after = Pt(6)
 
-    def toWord(self, file, config=Config()):
+    def toword(self, file, config=Config()):
         doc = Document()
 
         # prepare styles
-        self.prepareStyles(doc)
+        QuizPaper.preparestyles(doc)
 
         # Generate top title
         doc.add_paragraph(self.title, 'title')
 
         # Generate questions
         i = 0
-        qdict = self.questions
+        qdict = self.__questions
         for (category, qset) in qdict.items():
             # Generate question category
-            txt = self.getBulletLead(i) \
-                  + NLSFactory.getNLSText('N-' + category)
+            txt = self.getbulletlead(i) \
+                  + nls.getNLSText('N-' + category)
             # doc.add_heading(txt, 1)
             doc.add_paragraph(txt, 'h1')
 
@@ -127,7 +134,7 @@ class QuizPaper:
             j = 0
             for j in range(len(qset)):
                 question = qset[j]
-                question.toWord(doc, self.getStemLead(j), 2, config)
+                question.toword(doc, self.getstemlead(j), 2, config)
 
             i = i + 1
 
@@ -138,33 +145,32 @@ class QuizPaper:
         u'七', u'八', u'九', u'十'
     ]
 
-    def getBulletLead(self, i=0, category=None):
+    def getbulletlead(self, i=0, category=None):
         return self.linums[i] + u'、' + ''
 
-    def getStemLead(self, i=0):
+    def getstemlead(self, i=0):
         return str(i + 1) + u'.' + ''
 
     def __str__(self):
-        tmp = [self.title, '\n']
+        tmp = [self.title, '\n\n']
 
         cnt = 0
         i = 0
-        qdict = self.questions
+        qdict = self.__questions
         for (category, qset) in qdict.items():
             tmp.extend(
-                [self.getBulletLead(i), NLSFactory.getNLSText('N-' + category),
+                [self.getbulletlead(i), nls.getNLSText('N-' + category),
                  '\n'])
 
-            j = 0
             for j in range(len(qset)):
                 cnt = cnt + 1
                 question = qset[j]
-                tmp.extend([self.getStemLead(j), str(question), '\n'])
+                tmp.extend([self.getstemlead(j), str(question), '\n'])
             tmp.append('\n')
 
             i = i + 1
 
-        tmp.extend([NLSFactory.getNLSText('msgQuizNum') + str(cnt)])
+        tmp.extend([nls.getNLSText('msgQuizNum') + str(cnt)])
 
         return ''.join(tmp)
 
