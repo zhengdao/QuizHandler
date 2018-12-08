@@ -6,7 +6,7 @@ This program can help to convert a formatted Microsoft Excel doc to word.
 
 ### Dependencies
 
-- [python](https://www.python.org/)(>=3.6)
+- [python](https://www.python.org/)(>=3)
     
 - [xlrd](https://github.com/python-excel/xlrd)
 

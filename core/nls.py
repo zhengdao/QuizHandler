@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-core.NLSFactory
+core.nls
 ~~~~~~~~~~~~~~~~~~
 
 This module define the NLSFactory for handling and read nls item.
