@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-core.core
+core.quiz
 ~~~~~~~~~~~~~~~~~~
 
 This module define all question categories.

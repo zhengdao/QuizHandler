@@ -1,5 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+"""
+core.paper
+~~~~~~~~~~~~~~~~~~
+
+This module define the questions paper.
+
+"""
+
 from core import nls
 from core.quiz import Config
 from docx import Document
@@ -59,15 +68,15 @@ class QuizPaper:
         # Define paper title styles
         style = ustyles.add_style('title', WD_STYLE_TYPE.PARAGRAPH)
         pfont = style.font
-        pfont.size = Pt(18)
+        pfont.size = Pt(16)
         pfont.bold = True
         pfont.name = u'宋体'
         style.element.rPr.rFonts.set(qn('w:eastAsia'), u'宋体')
 
         pformat = style.paragraph_format
         pformat.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        pformat.space_before = Pt(4)
-        pformat.space_after = Pt(12)
+        pformat.space_before = Pt(0)
+        pformat.space_after = Pt(16)
 
         # Define paragraph styles
         style = ustyles.add_style('pstyle', WD_STYLE_TYPE.PARAGRAPH)
