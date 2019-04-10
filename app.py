@@ -126,20 +126,21 @@ if __name__ == '__main__':
     runtime.set_context_attr('locale', loc)
 
     pconfig = Config({
-        Category.SChoice: {'answer': True, 'explanation': False},
-        Category.MChoice: {'answer': True, 'explanation': False},
+        Category.SChoice: {'answer': True, 'explanation': True},
+        Category.MChoice: {'answer': True, 'explanation': True},
         Category.Glossary: {'answer': True, 'explanation': False},
-        Category.TrueFalse: {'answer': True, 'explanation': False},
+        Category.TrueFalse: {'answer': True, 'explanation': True},
         Category.GapFilling: {'answer': True, 'explanation': False},
         Category.ShortAnswer: {'answer': True, 'explanation': False}
     })
 
     courses = [
-        # {'file': 'Anatomy.xlsx', 'title': u'中医大2018年6月《系统解剖学(本科)》考试复习题集'},
-        {'file': 'Biological Chemistry.xlsx', 'title': u'中医大2018年12月《生物化学(本科)》考试复习题集'},
-        {'file': 'Physiology.xlsx', 'title': u'中医大2018年12月《生理学(本科)》考试复习题集'}
+        {'file': 'Pathobiology.xlsx', 'title': u'中医大2019年6月《病理学(本科)》考试复习题集'},
+        {'file': 'Clinical Pharmacotherapeutics.xlsx', 'title': u'中医大2019年6月《临床药物治疗学(本科)》考试复习题集'},
+        {'file': 'Pharmacology.xlsx', 'title': u'中医大2019年6月《药理学(本科)》考试复习题集'}
     ]
 
+    '''
     for index, course in enumerate(courses):
         buildpaper(course, pconfig)
 
@@ -154,4 +155,3 @@ if __name__ == '__main__':
 
     for index, t in enumerate(threads):
         t.join()
-    '''
