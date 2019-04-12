@@ -89,6 +89,9 @@ class Question:
         self.answer = answer
         self.explanation = explanation
 
+    def getStem(self):
+        return self.stem
+
     def getCategory(self):
         return self.category
 
@@ -102,8 +105,7 @@ class Question:
         self.explanation = explanation
 
     def stemToWord(self, doc, lead='', level=2, config=Config()):
-        doc.add_paragraph(lead + self.stem + self.getStemTail(),
-                          'h' + str(level))
+        doc.add_paragraph(lead + self.getStem(), 'h' + str(level))
 
     def answerToWord(self, doc):
         p = doc.add_paragraph()
@@ -132,11 +134,8 @@ class Question:
         # Keep a blank paragraph
         doc.add_paragraph('', 'pstyle')
 
-    def getStemTail(self):
-        return ''
-
     def __str__(self):
-        tmp = ['(', self.nCategory, ')', self.stem, self.getStemTail(), '\n']
+        tmp = ['(', self.nCategory, ')', self.getStem(), '\n']
 
         if self.answer is not None:
             tmp.extend([nls.getNLSText('msgAnswer'), self.answer, '\n'])
@@ -166,8 +165,19 @@ class Choice(Question):
         else:
             self.options = list(options)
 
+    def getStem(self):
+        # remove the tail brackets
+        stem = re.sub(r'[(（]\s*[）)]\s*$', "", self.stem)
+
+        # add tail colon (:) if need
+        mobj = re.search(r'[.?:)。？：）]$', stem, re.I)
+        if mobj is None:
+            stem = stem + ':'
+
+        return stem
+
     def stemToWord(self, doc, lead='', level=2, config=Config()):
-        tmp = [lead, self.stem, self.getStemTail(), u'(']
+        tmp = [lead, self.getStem(), u'(']
         if config.isTrue('answer', self.category) and len(self.answer) > 0:
             if self.category == Category.SChoice:
                 tmp.append(self.answer[0])
@@ -206,11 +216,8 @@ class Choice(Question):
         # Keep a blank paragraph
         doc.add_paragraph('', 'pstyle')
 
-    def getStemTail(self):
-        return u'：'
-
     def __str__(self):
-        tmp = ['(', self.nCategory, ')', self.stem, self.getStemTail(), '\n']
+        tmp = ['(', self.nCategory, ')', self.getStem(), '\n']
         for i in range(len(self.options)):
             tmp.extend([chr(65 + i), ' ', self.options[i], '\n'])
 
@@ -251,7 +258,7 @@ class TrueFalse(Question):
 
 
 class GapFilling(Question):
-    rPidx = re.compile(r'\(\)')
+    rPidx = re.compile(r'[（(]\s*[)）]')
 
     @staticmethod
     def getPosIdx(idx):
@@ -274,7 +281,7 @@ class GapFilling(Question):
 
     def makeupStem(self, fillWithAnswer=False):
         if self.rstStem is None:
-            frags = self.rPidx.split(self.stem)
+            frags = self.rPidx.split(self.getStem())
             cnt = len(frags)
             tmp = []
             for i in range(cnt):
@@ -297,11 +304,11 @@ class GapFilling(Question):
         return self.rstStem
 
     def stemToWord(self, doc, lead='', level=2, config=Config()):
-        stem = self.stem
+        stem = self.getStem()
         if config.isTrue('answer', self.category):
             stem = self.makeupStem(True)
 
-        doc.add_paragraph(lead + stem + self.getStemTail(), 'h' + str(level))
+        doc.add_paragraph(lead + stem, 'h' + str(level))
 
     def answerToWord2(self, doc):
         tmp = []
@@ -317,7 +324,7 @@ class GapFilling(Question):
 
     def __str__(self):
         stem = self.makeupStem(True)
-        tmp = ['(', self.nCategory, ')', stem, self.getStemTail(), '\n']
+        tmp = ['(', self.nCategory, ')', stem, '\n']
 
         # tmp.extend([nls.getNLSText('msgAnswer'), '\n'])
         # for i in range(len(self.answer)):
