@@ -96,9 +96,11 @@ class PaperBuilder(threading.Thread):
         print(paper)
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n")
 
-        output = 'res' + os.path.sep + util.get_filename(cfile) + '.docx'
+        # output = 'res' + os.path.sep + util.get_filename(cfile) + '.docx'
+        output = 'res' + os.path.sep + util.get_filename(ctitle) + '.docx'
         qh.toword(output, ctitle)
-        output = 'res' + os.path.sep + util.get_filename(cfile) + '-print.docx'
+        # output = 'res' + os.path.sep + util.get_filename(cfile) + '-print.docx'
+        output = 'res' + os.path.sep + util.get_filename(ctitle) + u'[打印版].docx'
         qh.toword(output, ctitle, self.__config)
 
 
@@ -115,9 +117,11 @@ def buildpaper(cinfo, config):
     print(paper)
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n")
 
-    output = 'res' + os.path.sep + util.get_filename(cfile) + '.docx'
+    # output = 'res' + os.path.sep + util.get_filename(cfile) + '.docx'
+    output = 'res' + os.path.sep + util.get_filename(ctitle) + '.docx'
     qh.toword(output, ctitle)
-    output = 'res' + os.path.sep + util.get_filename(cfile) + '-print.docx'
+    # output = 'res' + os.path.sep + util.get_filename(cfile) + '[Print].docx'
+    output = 'res' + os.path.sep + util.get_filename(ctitle) + u'[打印版].docx'
     qh.toword(output, ctitle, config)
 
 

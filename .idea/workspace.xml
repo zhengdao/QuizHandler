@@ -3,14 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1ac851a6-49b5-4bd4-9cff-9871562b29ad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/QuizHandler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/QuizHandler.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/nls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/nls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/paper.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/paper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/quiz.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/quiz.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/Clinical Pharmacotherapeutics.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/res/Clinical Pharmacotherapeutics.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/Pathobiology.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/res/Pathobiology.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/Pharmacology.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/res/Pharmacology.xlsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,33 +18,27 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/QuizHandler$app.coverage" NAME="app Coverage Results" MODIFIED="1544280787455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="317327287">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="2" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.25" value="1" />
-          <entry key="project.opened" value="3" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="13" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Python" value="72" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="445">
+              <caret line="158" column="16" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/paper.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="193">
+              <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -102,7 +93,6 @@
         <option value="$PROJECT_DIR$/dep/nls.py" />
         <option value="$PROJECT_DIR$/core/runtime.py" />
         <option value="$PROJECT_DIR$/QuizHandler.py" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/core/util.py" />
         <option value="$PROJECT_DIR$/core/xx.py" />
         <option value="$PROJECT_DIR$/core/__init__.py" />
@@ -110,6 +100,7 @@
         <option value="$PROJECT_DIR$/core/quiz.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/core/paper.py" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
@@ -133,17 +124,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="QuizHandler" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -166,9 +146,16 @@
               <item name="QuizHandler" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
             </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
             <path>
-              <item name="QuizHandler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="QuizHandler" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
           </expand>
           <select />
@@ -329,14 +316,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="49" y="24" width="1551" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2878625" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2372093" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32818532" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989259" visible="true" weight="0.18861607" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989259" visible="true" weight="0.18790218" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.32814527" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -359,9 +347,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -438,13 +423,6 @@
     <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -452,17 +430,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Python/Python3/Lib/site-packages/docx/shared.py">
+    <entry file="file://C:/Program Files/Python/Python3/Lib/site-packages/docx/shared.py" />
+    <entry file="file://$PROJECT_DIR$/core/paper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="116" column="11" selection-start-line="116" selection-start-column="6" selection-end-line="116" selection-end-column="11" />
+        <state relative-caret-position="193">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/paper.py">
+    <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2150">
-          <caret line="56" column="10" lean-forward="true" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
+        <state relative-caret-position="445">
+          <caret line="158" column="16" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="16" />
         </state>
       </provider>
     </entry>
