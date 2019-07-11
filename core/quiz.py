@@ -30,8 +30,8 @@ class Config:
         Category.SChoice: {'answer': True, 'explanation': True},
         Category.MChoice: {'answer': True, 'explanation': True},
         Category.Glossary: {'answer': True, 'explanation': False},
-        Category.TrueFalse: {'answer': True, 'explanation': True},
-        Category.GapFilling: {'answer': True, 'explanation': False},
+        Category.TrueFalse: {'answer': False, 'explanation': True},
+        Category.GapFilling: {'answer': False, 'explanation': False},
         Category.ShortAnswer: {'answer': True, 'explanation': False}
     })
 
@@ -217,20 +217,21 @@ class Choice(Question):
         doc.add_paragraph('', 'pstyle')
 
     def __str__(self):
-        tmp = ['(', self.nCategory, ')', self.getStem(), '\n']
+        tmp = ['(', self.nCategory, ')', self.getStem(), u'(']
+        if len(self.answer) > 0:
+            if self.category == Category.SChoice:
+                tmp.append(self.answer[0])
+            else:
+                tmp.append(''.join(self.answer))
+        else:
+            tmp.append('')
+        tmp.append(u')')
+        tmp.append('\n')
+
         for i in range(len(self.options)):
             tmp.extend([chr(65 + i), ' ', self.options[i], '\n'])
 
         tmp.append('\n')
-        if len(self.answer) > 0:
-            if self.category == Category.SChoice:
-                tmp.extend([nls.getNLSText('msgAnswer'), self.answer[0], '\n'])
-            else:
-                tmp.extend([nls.getNLSText('msgAnswer'), ''.join(self.answer), '\n'])
-        else:
-            tmp.extend([nls.getNLSText('msgAnswer'), '\n'])
-
-        # tmp.append('\n')
         if self.explanation is None:
             tmp.extend([nls.getNLSText('msgExplanation'), '\n'])
         else:
@@ -255,6 +256,54 @@ class TrueFalse(Question):
 
     def __init__(self, stem, answer=None, explanation=None):
         Question.__init__(self, Category.TrueFalse, stem, answer, explanation)
+
+    def getStem(self):
+        # remove the tail brackets
+        stem = re.sub(r'[(（]\s*[）)]\s*$', "", self.stem)
+
+        # add tail colon (:) if need
+        mobj = re.search(r'[.?:)。？：）]$', stem, re.I)
+        if mobj is None:
+            stem = stem + ':'
+
+        return stem
+
+    def stemToWord(self, doc, lead='', level=2, config=Config()):
+        tmp = [lead, self.getStem(), u'(']
+        if config.isTrue('answer', self.category) and self.answer is not None:
+            tmp.append(''.join(self.answer))
+        else:
+            tmp.append('')
+        tmp.append(')')
+
+        doc.add_paragraph(''.join(tmp), 'h' + str(level))
+
+    def toword(self, doc, lead='', level=2, config=Config()):
+        # to stem
+        self.stemToWord(doc, lead, level)
+
+        # to explanation
+        if config.isTrue('explanation', self.category):
+            self.explanationToWord(doc)
+
+        # Keep a blank paragraph
+        doc.add_paragraph('', 'pstyle')
+
+    def __str__(self):
+        tmp = ['(', self.nCategory, ')', self.getStem(), u'(']
+        if self.answer is not None:
+            tmp.extend(self.answer)
+        else:
+            tmp.append('')
+        tmp.append(')')
+
+        tmp.append('\n')
+        if self.explanation is None:
+            tmp.extend([nls.getNLSText('msgExplanation'), '\n'])
+        else:
+            tmp.extend([nls.getNLSText('msgExplanation'), self.explanation, '\n'])
+
+        return ''.join(tmp)
 
 
 class GapFilling(Question):
@@ -322,13 +371,24 @@ class GapFilling(Question):
         # Keep a blank paragraph
         doc.add_paragraph('', 'pstyle')
 
+    def toword(self, doc, lead='', level=2, config=Config()):
+        # to stem
+        self.stemToWord(doc, lead, level, config)
+
+        # to answer
+        # if config.isTrue('answer', self.category):
+        #     self.answerToWord(doc)
+
+        # to explanation
+        if config.isTrue('explanation', self.category):
+            self.explanationToWord(doc)
+
+        # Keep a blank paragraph
+        doc.add_paragraph('', 'pstyle')
+
     def __str__(self):
         stem = self.makeupStem(True)
         tmp = ['(', self.nCategory, ')', stem, '\n']
-
-        # tmp.extend([nls.getNLSText('msgAnswer'), '\n'])
-        # for i in range(len(self.answer)):
-        #    tmp.extend([self.getPosIdx(i), ' ', self.answer[i], '\t'])
 
         if self.explanation is None:
             tmp.extend([nls.getNLSText('msgExplanation'), '\n'])

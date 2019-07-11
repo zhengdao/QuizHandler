@@ -121,8 +121,8 @@ def buildpaper(cinfo, config):
     output = 'res' + os.path.sep + util.get_filename(ctitle) + '.docx'
     qh.toword(output, ctitle)
     # output = 'res' + os.path.sep + util.get_filename(cfile) + '[Print].docx'
-    output = 'res' + os.path.sep + util.get_filename(ctitle) + u'[打印版].docx'
-    qh.toword(output, ctitle, config)
+    # output = 'res' + os.path.sep + util.get_filename(ctitle) + u'[打印版].docx'
+    # qh.toword(output, ctitle, config)
 
 
 if __name__ == '__main__':
@@ -144,7 +144,6 @@ if __name__ == '__main__':
         {'file': 'Pharmacology.xlsx', 'title': u'中医大2019年6月《药理学(本科)》考试复习题集'}
     ]
 
-    '''
     for index, course in enumerate(courses):
         buildpaper(course, pconfig)
 
@@ -159,3 +158,5 @@ if __name__ == '__main__':
 
     for index, t in enumerate(threads):
         t.join()
+    '''
+

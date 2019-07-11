@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ac851a6-49b5-4bd4-9cff-9871562b29ad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/QuizHandler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/QuizHandler.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Clinical Pharmacotherapeutics.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/res/Clinical Pharmacotherapeutics.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Pathobiology.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/res/Pathobiology.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Pharmacology.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/res/Pharmacology.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/quiz.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/quiz.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,12 +16,12 @@
     <SUITE FILE_PATH="coverage/QuizHandler$app.coverage" NAME="app Coverage Results" MODIFIED="1544280787455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="158" column="16" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="16" />
+            <state relative-caret-position="292">
+              <caret line="123" selection-start-line="123" selection-end-line="124" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -32,8 +29,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/paper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+            <state relative-caret-position="-548">
+              <caret line="122" column="38" selection-start-line="122" selection-start-column="38" selection-end-line="122" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/quiz.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="390" column="52" lean-forward="true" selection-start-line="390" selection-start-column="52" selection-end-line="390" selection-end-column="52" />
+              <folding>
+                <element signature="e#130#139#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -97,9 +106,9 @@
         <option value="$PROJECT_DIR$/core/xx.py" />
         <option value="$PROJECT_DIR$/core/__init__.py" />
         <option value="$PROJECT_DIR$/core/nls.py" />
-        <option value="$PROJECT_DIR$/core/quiz.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/core/paper.py" />
+        <option value="$PROJECT_DIR$/core/quiz.py" />
         <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
@@ -124,6 +133,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="QuizHandler" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -150,20 +170,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="QuizHandler" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.startup.tasks" />
   </component>
@@ -236,12 +246,12 @@
       <option name="presentableId" value="Default" />
       <updated>1527146813421</updated>
     </task>
-    <task id="LOCAL-00001" summary="Init the project.">
-      <created>1527503199837</created>
+    <task id="LOCAL-00001" summary="Update the res.">
+      <created>1558667552111</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1527503199837</updated>
+      <updated>1558667552113</updated>
     </task>
     <task id="LOCAL-00002" summary="Support to generate the word document.">
       <created>1527674636742</created>
@@ -313,18 +323,19 @@
       <option name="project" value="LOCAL" />
       <updated>1529979080219</updated>
     </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1551" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2372093" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25049832" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32818532" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989259" visible="true" weight="0.18790218" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49833888" visible="true" weight="0.33458176" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.32814527" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -335,7 +346,7 @@
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="11" />
       <window_info anchor="bottom" id="Terminal" order="12" />
-      <window_info anchor="bottom" x="185" y="555" width="752" height="282" id="Event Log" order="13" sideWeight="0.50107414" side_tool="true" weight="0.18861607" />
+      <window_info anchor="bottom" x="185" y="555" width="752" height="282" id="Event Log" order="13" sideWeight="0.5016611" side_tool="true" visible="true" weight="0.33458176" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -347,6 +358,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update the res." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update the res." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -372,16 +387,6 @@
     <entry file="file://$PROJECT_DIR$/quiz/ShortAnswer.py" />
     <entry file="file:///usr/lib/python3.6/ntpath.py" />
     <entry file="file://$PROJECT_DIR$/core/xx.py" />
-    <entry file="file://$PROJECT_DIR$/core/quiz.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-          <folding>
-            <element signature="e#130#139#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -433,15 +438,25 @@
     <entry file="file://C:/Program Files/Python/Python3/Lib/site-packages/docx/shared.py" />
     <entry file="file://$PROJECT_DIR$/core/paper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+        <state relative-caret-position="-548">
+          <caret line="122" column="38" selection-start-line="122" selection-start-column="38" selection-end-line="122" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/quiz.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="390" column="52" lean-forward="true" selection-start-line="390" selection-start-column="52" selection-end-line="390" selection-end-column="52" />
+          <folding>
+            <element signature="e#130#139#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="158" column="16" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="16" />
+        <state relative-caret-position="292">
+          <caret line="123" selection-start-line="123" selection-end-line="124" selection-end-column="39" />
         </state>
       </provider>
     </entry>
