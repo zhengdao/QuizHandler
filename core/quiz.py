@@ -157,7 +157,8 @@ class Question:
 
 class Choice(Question):
 
-    def __init__(self, category, stem, options=None, answer=[], explanation=None):
+    def __init__(self, category, stem, options=None, answer=[],
+                 explanation=None):
         Question.__init__(self, category, stem, answer, explanation)
 
         if options is None:
@@ -235,7 +236,8 @@ class Choice(Question):
         if self.explanation is None:
             tmp.extend([nls.getNLSText('msgExplanation'), '\n'])
         else:
-            tmp.extend([nls.getNLSText('msgExplanation'), self.explanation, '\n'])
+            tmp.extend(
+                [nls.getNLSText('msgExplanation'), self.explanation, '\n'])
 
         return ''.join(tmp)
 
@@ -243,13 +245,15 @@ class Choice(Question):
 class SingleChoice(Choice):
 
     def __init__(self, stem, options=[], answer=[], explanation=None):
-        Choice.__init__(self, Category.SChoice, stem, options, answer, explanation)
+        Choice.__init__(self, Category.SChoice, stem, options, answer,
+                        explanation)
 
 
 class MultipleChoice(Choice):
 
     def __init__(self, stem, options=[], answer=[], explanation=None):
-        Choice.__init__(self, Category.SChoice, stem, options, answer, explanation)
+        Choice.__init__(self, Category.SChoice, stem, options, answer,
+                        explanation)
 
 
 class TrueFalse(Question):
@@ -301,7 +305,8 @@ class TrueFalse(Question):
         if self.explanation is None:
             tmp.extend([nls.getNLSText('msgExplanation'), '\n'])
         else:
-            tmp.extend([nls.getNLSText('msgExplanation'), self.explanation, '\n'])
+            tmp.extend(
+                [nls.getNLSText('msgExplanation'), self.explanation, '\n'])
 
         return ''.join(tmp)
 
@@ -393,7 +398,8 @@ class GapFilling(Question):
         if self.explanation is None:
             tmp.extend([nls.getNLSText('msgExplanation'), '\n'])
         else:
-            tmp.extend([nls.getNLSText('msgExplanation'), self.explanation, '\n'])
+            tmp.extend(
+                [nls.getNLSText('msgExplanation'), self.explanation, '\n'])
 
         return ''.join(tmp)
 

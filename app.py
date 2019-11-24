@@ -24,20 +24,39 @@ class QuizHandler:
             if i == 0:
                 continue
             else:
-                self.buildquestion(sheet.row_values(i, 1, 4))
+                self.buildquestion(sheet.row_values(i, 1, 8))
 
         return self.__paper
+
+    def get_options(self, row):
+        item_b = row[3]  # B
+
+        options = []
+        if item_b is not None:
+            cnt = 5  # A - E
+            for i in range(cnt):
+                option = str(row[i + 2])
+                if len(option) > 0:
+                    options.append(option)
+                elif i < cnt - 1:
+                    options.append('')
+                else:
+                    pass
+        else:
+            options = str(row[2]).split(u"〓")
+
+        return options
 
     def buildquestion(self, row):
         category = row[0]
         stem = row[1]
 
         if category == u'单选题':
-            options = str(row[2]).split(u"〓")
+            options = self.get_options(row)
             question = SingleChoice(stem, options)
 
         elif category == u'多选题':
-            options = str(row[2]).split(u"〓")
+            options = self.get_options(row)
             question = MultipleChoice(stem, options)
             pass
 
@@ -139,9 +158,15 @@ if __name__ == '__main__':
     })
 
     courses = [
-        {'file': 'Pathobiology.xlsx', 'title': u'中医大2019年6月《病理学(本科)》考试复习题集'},
-        {'file': 'Clinical Pharmacotherapeutics.xlsx', 'title': u'中医大2019年6月《临床药物治疗学(本科)》考试复习题集'},
-        {'file': 'Pharmacology.xlsx', 'title': u'中医大2019年6月《药理学(本科)》考试复习题集'}
+        # {'file': 'Pathobiology.xlsx', 'title': u'中医大2019年6月《病理学(本科)》考试复习题集'},
+        # {'file': 'Clinical Pharmacotherapeutics.xlsx',
+        #  'title': u'中医大2019年6月《临床药物治疗学(本科)》考试复习题集'},
+        # {'file': 'Pharmacology.xlsx', 'title': u'中医大2019年6月《药理学(本科)》考试复习题集'},
+        {'file': 'Internal Medicine.xls',
+         'title': u'中医大2019年12月《内科学(本科)》考试复习题集'},
+        {'file': 'Surgery.xls', 'title': u'中医大2019年12月《外科学(本科)》考试复习题集'},
+        {'file': 'Pharmacognosy.xls', 'title': u'中医大2019年12月《生药学(本科)》考试复习题集'},
+        {'file': 'Pharmaceutics.xls', 'title': u'中医大2019年12月《药剂学(本科)》考试复习题集'}
     ]
 
     for index, course in enumerate(courses):
@@ -159,4 +184,3 @@ if __name__ == '__main__':
     for index, t in enumerate(threads):
         t.join()
     '''
-
